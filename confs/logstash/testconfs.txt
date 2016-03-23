@@ -1,0 +1,15 @@
+^[^\[]*\[(?<thread>[^\]]+)\] (?<level>.{5}) (?<clientip>\S*)\s*(?:id=(?<corr_id>[^:]+):lv=(?<wt_last_visit>\d+):ss=(?<wt_session_start>\d+)) (?<username>\S*) (?<metref>\S*) (?<session>\S*) (?<channel>\S*) (?<logger>\S+) \- (?<msg>.*) 
+
+
+
+/opt/logstash/bin/logstash -f /vagrant/confs/logstash/logstash-websphere-example2.conf
+
+
+
+			match => ["message", "%{TIMESTAMP_ISO8601:eventts} \[(?<thread>[^\]]+)\] %{LOGLEVEL:level} %{IPORHOST:clientip}\s*(%{SESSION_DETAILS})?\s*(?<username>\S*) (?<metref>\S*) (?<session>\S*) (?<channel>\S*) (?<logger>\S+) \- %{GREEDYDATA:msg}"]
+
+			
+			
+			tr ' ' '\n' < temp.out | grep _grokparsefailure" | wc -l
+			
+			grep -c '\<_grokparsefailure\>'

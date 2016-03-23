@@ -1,0 +1,41 @@
+### NOT starting on installation, please execute the following statements to configure elasticsearch service to start automatically using chkconfig
+ sudo chkconfig --add elasticsearch
+### You can start elasticsearch service by executing
+ sudo service elasticsearch start
+
+ 
+ sudo chown -R root: /opt/kibana
+ 
+ /opt/logstash/bin/logstash agent -f /etc/logstash/conf.d/10-example.conf
+
+ 
+ cd /etc/init.d && sudo curl -k -o kibana https://gist.githubusercontent.com/thisismitch/8b15ac909aed214ad04a/raw/fc5025c3fc499ad8262aff34ba7fde8c87ead7c0/kibana-4.x-init
+ 
+ cd /etc/default && sudo curl -k -o kibana https://gist.githubusercontent.com/thisismitch/8b15ac909aed214ad04a/raw/fc5025c3fc499ad8262aff34ba7fde8c87ead7c0/kibana-4.x-default
+
+ 
+ curl http://localhost:9200/_search?pretty=1&q=Summary
+ 
+ProxyPass        /kibana http://localhost:5601
+ProxyPassReverse /kibana http://localhost:5601
+
+ProxyPass /app/kibana http://127.0.0.1:5601/app/kibana
+ProxyPassReverse /app/kibana http://127.0.0.1:5601/app/kibana
+
+ProxyPass /bundles http://127.0.0.1:5601/bundles
+ProxyPassReverse /bundles http://127.0.0.1:5601/bundles
+
+ProxyPass /elasticsearch http://127.0.0.1:9200
+ProxyPassReverse /elasticsearch http://127.0.0.1:9200
+
+java -jar logsearcher.jar -s "metintugpar0709 metintugpar0710 metintugpar0711 metintsugpar0734 metintsugpar0735 metintsugpar0736" -a edpm -b 2015-12-17  -do -u 3162835 -pw Ourlife5
+
+java -jar logsearcher.jar -s "METINTSVLT166 METINTSVLT167 metintsvlp230 metintsvlp231 METINTSVLT273" -env QA -a phoenixportal -b 2015-12-17  -eo -u 3162835 -pw Ourlife5 -t ""
+
+java -jar logsearcher.jar -cfg "C:\Temp\appconfig.properties" -s "METINTSVLT166 METINTSVLT167 metintsvlp230 metintsvlp231 METINTSVLT273" -env QA -a phoenixportal -b 2015-12-17  -eo -t ""
+
+java –jar logsearcher.jar -cfg "C:\Temp\appconfig.properties" –p MetOnline –env INT –b 2015-12-18 -eo -ncu
+
+java –jar logsearcher.jar –p eSERVICE –env PROD –b 2015-12-18 –t “holdings not found” -do
+
+java –jar logsearcher.jar –p eSERVICE –env PROD –b 2015-12-27 –t “holdings not found” –u <username> -pw <password> --no-clean-up
